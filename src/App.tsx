@@ -1,12 +1,13 @@
 import { NextUIProvider } from '@nextui-org/react'
-import Header from './components/Header'
-import VerticalTabs from './components/VerticalTabs'
+import HomePage from './pages/Home'
+import Layout from './layout'
 
 function App() {
   return (
     <NextUIProvider>
-      <Header />
-      <VerticalTabs />
+      <Layout>
+        <HomePage />
+      </Layout>
     </NextUIProvider>
   )
 }
