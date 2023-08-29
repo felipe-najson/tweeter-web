@@ -15,7 +15,7 @@ import { BsFillPeopleFill } from 'react-icons/bs'
 
 export default function TweetInput() {
   return (
-    <div className="flex flex-col gap-2 bg-white w-full max-w-[800px] p-3 rounded-lg drop-shadow-md items-start m-4">
+    <div className="flex flex-col gap-2 bg-white max-w-[800px] p-3 rounded-lg drop-shadow-md items-start">
       <span className="text-sm">Tweet something</span>
       <Divider className="bg-black/5" />
       <div className="flex gap-2 items-start w-full">

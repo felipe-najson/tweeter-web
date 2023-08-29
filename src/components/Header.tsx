@@ -65,6 +65,7 @@ export default function Header() {
               color="primary"
               name="Jason Hughes"
               size="sm"
+              radius="sm"
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
             />
           </DropdownTrigger>
