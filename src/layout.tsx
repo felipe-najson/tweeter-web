@@ -1,11 +1,13 @@
-import React from 'react'
 import Header from './components/Header'
+import { Outlet } from 'react-router-dom'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
     <div className="bg-gray-200 min-h-screen">
       <Header />
-      <div className="p-4 max-w-[1400px]">{children}</div>
+      <div className="p-4 max-w-[1400px]">
+        <Outlet />
+      </div>
     </div>
   )
 }
