@@ -5,7 +5,7 @@ export default function Layout() {
   return (
     <div className="bg-gray-200 min-h-screen">
       <Header />
-      <div className="p-4 max-w-[1400px]">
+      <div className="flex flex-col p-4 max-w-[1400px] w-full  items-center justify-center ">
         <Outlet />
       </div>
     </div>

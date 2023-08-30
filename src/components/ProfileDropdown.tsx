@@ -7,6 +7,8 @@ import {
   Avatar,
 } from '@nextui-org/react'
 import { useNavigate } from 'react-router-dom'
+import { BiLogOut, BiSolidUserCircle } from 'react-icons/bi'
+import { IoMdSettings } from 'react-icons/io'
 
 export default function ProfileDropdown() {
   const navigate = useNavigate()
@@ -14,18 +16,21 @@ export default function ProfileDropdown() {
   return (
     <NavbarContent as="div" justify="end">
       <Dropdown placement="bottom-end">
-        <DropdownTrigger>
-          <Avatar
-            isBordered
-            as="button"
-            className="transition-transform"
-            color="primary"
-            name="Jason Hughes"
-            size="sm"
-            radius="sm"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-          />
-        </DropdownTrigger>
+        <div className="flex gap-3 items-center">
+          <DropdownTrigger>
+            <Avatar
+              isBordered
+              as="button"
+              className="transition-transform"
+              color="primary"
+              name="Jason Hughes"
+              size="sm"
+              radius="sm"
+              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            />
+          </DropdownTrigger>
+          <p className="text-sm text-bold">Mikael Sang</p>
+        </div>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownItem key="profile" className="h-14 gap-2">
             <p className="font-semibold">Signed in as</p>
@@ -36,11 +41,14 @@ export default function ProfileDropdown() {
             onClick={() => {
               navigate('/profile')
             }}
+            startContent={<BiSolidUserCircle />}
           >
             My Profile
           </DropdownItem>
-          <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-          <DropdownItem key="logout" color="danger">
+          <DropdownItem key="help_and_feedback" startContent={<IoMdSettings />}>
+            Settings
+          </DropdownItem>
+          <DropdownItem startContent={<BiLogOut />} key="logout" color="danger">
             Log Out
           </DropdownItem>
         </DropdownMenu>

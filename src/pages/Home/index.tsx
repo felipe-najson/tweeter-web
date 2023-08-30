@@ -6,7 +6,7 @@ import WhoFollow from '../../components/WhoFollow'
 export default function HomePage() {
   return (
     <div className="grid grid-flow-col justify-center gap-4">
-      <div className=" flex flex-col gap-3 w-auto">
+      <div className="flex flex-col gap-3 w-auto">
         <TweetInput />
         <TweetPost />
       </div>
