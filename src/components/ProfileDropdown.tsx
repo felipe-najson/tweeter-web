@@ -9,9 +9,12 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { BiLogOut, BiSolidUserCircle } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
+import useUser from '../hooks/useUser'
+
 
 export default function ProfileDropdown() {
   const navigate = useNavigate()
+  const {data: user} = useUser()
 
   return (
     <NavbarContent as="div" justify="end">
@@ -23,18 +26,18 @@ export default function ProfileDropdown() {
               as="button"
               className="transition-transform"
               color="primary"
-              name="Jason Hughes"
+              name={user?.name}
               size="sm"
               radius="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              src={user?.image}
             />
           </DropdownTrigger>
-          <p className="text-sm text-bold">Mikael Sang</p>
+          <p className="text-sm text-bold">{user?.name}</p>
         </div>
         <DropdownMenu aria-label="Profile Actions" variant="flat">
           <DropdownItem key="profile" className="h-14 gap-2">
             <p className="font-semibold">Signed in as</p>
-            <p className="font-semibold">zoey@example.com</p>
+            <p className="font-semibold">{user?.email}</p>
           </DropdownItem>
           <DropdownItem
             key="settings"

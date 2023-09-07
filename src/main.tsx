@@ -4,12 +4,17 @@ import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import router from './routes.tsx'
 import { NextUIProvider } from '@nextui-org/react'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <NextUIProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </NextUIProvider>
   </React.StrictMode>,
 )

@@ -12,8 +12,9 @@ import {
 } from '@nextui-org/react'
 import { BiWorld, BiImageAlt } from 'react-icons/bi'
 import { BsFillPeopleFill } from 'react-icons/bs'
+import type User from '../entities/User'
 
-export default function TweetInput() {
+export default function TweetInput({user}: {user: User | undefined}) {
   return (
     <div className="flex flex-col gap-2 bg-white max-w-[800px] p-3 rounded-lg drop-shadow-md items-start">
       <span className="text-sm">Tweet something</span>
@@ -22,7 +23,7 @@ export default function TweetInput() {
         <Avatar
           radius="sm"
           className="mt-2"
-          src="https://i.pravatar.cc/150?u=a04258a2462d826712d"
+          src={user?.image}
         />
         <div className="flex flex-col w-full gap-3">
           <Textarea placeholder="What's happening?" />

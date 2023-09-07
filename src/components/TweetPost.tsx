@@ -7,29 +7,39 @@ import {
   Image,
 } from '@nextui-org/react'
 
-import TweetReply from './TweetReply'
-import TweetComment from './TweetComment'
 import TweetActions from './TweetActions'
+import TweetComment from './TweetComment'
+import TweetReply from './TweetReply'
 
-export default function TweetPost() {
+import moment from 'moment'
+import type Tweet from '../entities/Tweet'
+import type User from '../entities/User'
+
+interface Props {
+  tweet: Tweet
+  user: User
+}
+
+export default function TweetPost({tweet, user} : Props) {
+  const {createdAt, content} = tweet
+
   return (
     <Card className="max-w-[800px]">
       <CardHeader className="flex gap-3">
         <Avatar
-          src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+          src={user.image}
           radius="sm"
           alt="user photo"
           className="ms-2"
         />
         <div className="flex flex-col">
-          <p className="text-md font-extrabold">Mikael Sang</p>
-          <p className="text-small text-default-500">24 August at 20:43</p>
+          <p className="text-md font-extrabold">{user.name}</p>
+          <p className="text-small text-default-500">{moment(createdAt).format('LLL')}</p>
         </div>
       </CardHeader>
       <CardBody className="flex flex-col gap-2 justify-start">
         <p>
-          “We travel, some of us forever, to seek other places, other lives,
-          other souls.” – Anais Nin
+          {content}
         </p>
         <div className="flex flex-col gap-2 items-end">
           <Image
@@ -37,7 +47,7 @@ export default function TweetPost() {
             src="https://images.unsplash.com/photo-1692617669592-5b0301899216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2942&q=20"
           />
           <div className="flex gap-3">
-            <p className="text-small text-gray-400">449 Comments</p>
+            <p className="text-small text-gray-400">{tweet?.comments?.length ?? "0"} Comments</p>
             <p className="text-small text-gray-400">59k Retweets</p>
             <p className="text-small text-gray-400">234 Saved</p>
           </div>
@@ -45,7 +55,7 @@ export default function TweetPost() {
       </CardBody>
       <CardFooter className="flex flex-col items-start gap-2">
         <TweetActions />
-        <TweetReply />
+        <TweetReply user={user} />
         <TweetComment />
       </CardFooter>
     </Card>
