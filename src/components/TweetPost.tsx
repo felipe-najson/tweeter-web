@@ -24,7 +24,7 @@ export default function TweetPost({tweet, user} : Props) {
   const {createdAt, content} = tweet
 
   return (
-    <Card className="max-w-[800px]">
+    <Card className={`max-w-[800px]`}>
       <CardHeader className="flex gap-3">
         <Avatar
           src={user.image}

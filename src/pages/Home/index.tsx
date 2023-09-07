@@ -5,9 +5,11 @@ import WhoFollow from '../../components/WhoFollow'
 import useTweets from '../../hooks/useTweets'
 import useUser from '../../hooks/useUser'
 
+
 export default function HomePage() {
   const {data: tweets} = useTweets()
-  const {data: user} = useUser()
+  const {data: user} = useUser('c73f24d7-ef04-4366-8f5e-7ebc5c7797a2')
+
 
 
   return (

@@ -5,9 +5,12 @@ export default interface Tweet {
   content: string
   likes: number
   createdAt: string
+  userId: string
   user: User
   comments: Comment[]
 }
+
+export type TweetEntry = Pick<Tweet, 'content' | 'userId'>
 
 interface Comment {
   id: string

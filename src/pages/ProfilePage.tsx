@@ -1,4 +1,4 @@
-import { Avatar, Button, Listbox, ListboxItem } from '@nextui-org/react'
+import { Avatar, Button, Listbox, ListboxItem, Spinner } from '@nextui-org/react'
 import { IoMdPersonAdd } from 'react-icons/io'
 // import TweetPost from '../components/TweetPost'
 import { BiImageAlt } from 'react-icons/bi'
@@ -7,9 +7,17 @@ import { MdOutlineModeComment } from 'react-icons/md'
 import { TfiReload } from 'react-icons/tfi'
 import useUser from '../hooks/useUser'
 import TweetPost from '../components/TweetPost'
+import { useParams } from 'react-router-dom'
 
 export default function ProfilePage() {
-  const { data: user } = useUser()
+  const {id} = useParams()
+  if (id === undefined) return null
+
+  const { data: user, isLoading, isError } = useUser(id)
+
+  if (isError) return <div>failed to load</div>;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>

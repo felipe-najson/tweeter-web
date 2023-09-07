@@ -12,7 +12,21 @@ export default {
       display: ['Poppins', 'sans-serif'],
       body: ['Poppins', 'sans-serif'],
     },
+    extend:{
+      colors:{
+        disabled: '#E0E0E0',
+      }
+    }
   },
   darkMode: 'class',
-  plugins: [nextui()],
+  plugins: [nextui({
+    themes: {
+      light: {
+        disabled: '#E0E0E0',
+      },
+      dark: {
+        disabled: '#E0E0E0',
+      },
+    }
+  })],
 }

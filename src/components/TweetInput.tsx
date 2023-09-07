@@ -13,8 +13,20 @@ import {
 import { BiWorld, BiImageAlt } from 'react-icons/bi'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import type User from '../entities/User'
+import { useState } from 'react'
+import usePostTweet from '../hooks/usePostTweet'
+
 
 export default function TweetInput({user}: {user: User | undefined}) {
+  const [tweet, setTweet] = useState('')
+  const {mutate, isLoading} = usePostTweet()
+
+
+  const handleSubmit = () => {
+    if (tweet !== '' )
+      mutate({content: tweet, userId: user?.id})
+  }
+
   return (
     <div className="flex flex-col gap-2 bg-white max-w-[800px] p-3 rounded-lg drop-shadow-md items-start">
       <span className="text-sm">Tweet something</span>
@@ -26,7 +38,7 @@ export default function TweetInput({user}: {user: User | undefined}) {
           src={user?.image}
         />
         <div className="flex flex-col w-full gap-3">
-          <Textarea placeholder="What's happening?" />
+          <Textarea value={tweet} onValueChange={setTweet} placeholder="What's happening?" />
           <div className="flex flex-row justify-between">
             <div className="flex items-center gap-2">
               <Link as={'button'}>
@@ -66,7 +78,7 @@ export default function TweetInput({user}: {user: User | undefined}) {
                 </DropdownMenu>
               </Dropdown>
             </div>
-            <Button color="primary">Tweet</Button>
+            <Button isLoading={isLoading} color="primary" onClick={handleSubmit}>Tweet</Button>
           </div>
         </div>
       </div>
