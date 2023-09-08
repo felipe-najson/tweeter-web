@@ -20,10 +20,10 @@ interface Props {
 }
 
 export default function TweetPost({tweet, user} : Props) {
-  const {createdAt, content} = tweet
+  const {createdAt, content, comments} = tweet
 
   return (
-    <Card className='max-w-[800px]'>
+    <Card>
       <CardHeader className="flex gap-3">
         <Avatar
           src={user.image}
@@ -50,8 +50,9 @@ export default function TweetPost({tweet, user} : Props) {
       </CardBody>
       <CardFooter className="flex flex-col items-start gap-2">
         <TweetActions />
-        <TweetReply user={user} />
-        <TweetComment />
+        <TweetReply user={user} tweetId={tweet.id}/>
+        {comments?.map(comment => (
+          <TweetComment key={comment.id} comment={comment} />))}
       </CardFooter>
     </Card>
   )

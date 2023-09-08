@@ -13,9 +13,8 @@ export default function HomePage() {
 
   const skeletons = [1, 2, 3, 4, 5, 6]
 
-
   return (
-    <div className="flex flex-row justify-center w-full gap-4">
+    <div className="flex flex-row justify-center w-full gap-6 md:p-4">
       <TweetContainer>
         {isLoading &&
           skeletons.map(skeleton => <TweetSkeleton key={skeleton} />)}

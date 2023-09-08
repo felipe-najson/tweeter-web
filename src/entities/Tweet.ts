@@ -12,7 +12,7 @@ export default interface Tweet {
 
 export type TweetEntry = Pick<Tweet, 'content' | 'userId'>
 
-interface Comment {
+export interface Comment {
   id: string
   content: string
   likes: number
