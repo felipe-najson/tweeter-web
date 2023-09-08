@@ -4,7 +4,6 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  Image,
 } from '@nextui-org/react'
 
 import TweetActions from './TweetActions'
@@ -24,7 +23,7 @@ export default function TweetPost({tweet, user} : Props) {
   const {createdAt, content} = tweet
 
   return (
-    <Card className={`max-w-[800px]`}>
+    <Card className='max-w-[800px]'>
       <CardHeader className="flex gap-3">
         <Avatar
           src={user.image}
@@ -42,10 +41,6 @@ export default function TweetPost({tweet, user} : Props) {
           {content}
         </p>
         <div className="flex flex-col gap-2 items-end">
-          <Image
-            className="w-full"
-            src="https://images.unsplash.com/photo-1692617669592-5b0301899216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2942&q=20"
-          />
           <div className="flex gap-3">
             <p className="text-small text-gray-400">{tweet?.comments?.length ?? "0"} Comments</p>
             <p className="text-small text-gray-400">59k Retweets</p>
