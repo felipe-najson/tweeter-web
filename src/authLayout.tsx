@@ -1,10 +1,8 @@
-import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
 
-export default function Layout() {
+export default function AuthLayout() {
   return (
     <div className="bg-gray-200 min-h-screen">
-      <Header />
       <div className="flex flex-colmax-w-[1400px] items-center justify-center">
         <Outlet />
       </div>

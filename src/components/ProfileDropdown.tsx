@@ -11,7 +11,6 @@ import { BiLogOut, BiSolidUserCircle } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
 import useUser from '../hooks/useUser'
 
-
 export default function ProfileDropdown() {
   const navigate = useNavigate()
   const {data: user} = useUser('dcbd23e4-7773-41b1-b777-87a55a1443d1')
@@ -51,7 +50,7 @@ export default function ProfileDropdown() {
           <DropdownItem key="help_and_feedback" startContent={<IoMdSettings />}>
             Settings
           </DropdownItem>
-          <DropdownItem startContent={<BiLogOut />} key="logout" color="danger">
+          <DropdownItem startContent={<BiLogOut />} key="logout" color="danger" onClick={() => {navigate('/login')}}>
             Log Out
           </DropdownItem>
         </DropdownMenu>

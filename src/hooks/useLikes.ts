@@ -11,7 +11,7 @@ const useLikes = ({ userId, likes }: Props) => {
   const client = new APIClient('/tweets/like')
   const queryClient = useQueryClient()
 
-  const isLiked = likes.findIndex(like => like.id === userId) !== -1
+  const isLiked = likes?.findIndex(like => like.id === userId) !== -1
 
   const mutation = useMutation({
     mutationFn: client.put,
