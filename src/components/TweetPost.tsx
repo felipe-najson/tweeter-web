@@ -65,7 +65,7 @@ export default function TweetPost({ tweet, user }: Props) {
           </div>
         </CardBody>
         <CardFooter className="flex flex-col items-start gap-2">
-          <TweetActions />
+          <TweetActions tweetId={tweet.id} userId={user.id} likes={tweet.likes} />
           <TweetReply user={user} tweetId={tweet.id} />
           {comments?.map(comment => (
             <TweetComment key={comment.id} comment={comment} />
