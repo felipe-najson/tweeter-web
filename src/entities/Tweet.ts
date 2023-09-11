@@ -3,10 +3,10 @@ import type User from './User'
 export default interface Tweet {
   id: string
   content: string
-  likes: number
   createdAt: string
   userId: string
   user: User
+  likes: User[]
   comments: Comment[]
 }
 

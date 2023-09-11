@@ -20,8 +20,8 @@ export default function ProfilePage() {
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      <div className="flex items-end justify-center relative h-[630px] md:h-[400px] w-full">
+    <div className='w-full'>
+      <div className="flex items-end justify-center relative h-[630px] md:h-[400px] w-full mb-4">
         <img
           className="w-full pb-20 h-[400px] object-cover rounded absolute top-0 left-0 right-0 z-1"
           src="https://images.unsplash.com/photo-1682686578842-00ba49b0a71a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2875&q=80"
@@ -60,8 +60,8 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <div className="grid grid-flow-col gap-8">
-        <div className="hidden sm:block w-[240px] max-w-[300px] min-w-[180px] h-fit bg-white border-small p-2 px-4 rounded-small border-default-200 dark:border-default-100">
+      <div className="flex flex-row gap-8 sm:px-6">
+        <div className="hidden sm:block w-[340px] max-w-[400px] min-w-[250px] h-fit bg-white border-small p-2 px-4 rounded-small border-default-200 dark:border-default-100">
           <Listbox
             variant="solid"
             color="primary"
@@ -85,12 +85,12 @@ export default function ProfilePage() {
             </ListboxItem>
           </Listbox>
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 w-full">
           {user?.tweets.map((tweet) => (
             <TweetPost key={tweet.id} tweet={tweet} user={user} />))
             }
         </div>
       </div>
-    </>
+    </div>
   )
 }

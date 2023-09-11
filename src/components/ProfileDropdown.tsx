@@ -14,7 +14,7 @@ import useUser from '../hooks/useUser'
 
 export default function ProfileDropdown() {
   const navigate = useNavigate()
-  const {data: user} = useUser('c73f24d7-ef04-4366-8f5e-7ebc5c7797a2')
+  const {data: user} = useUser('dcbd23e4-7773-41b1-b777-87a55a1443d1')
 
   return (
     <NavbarContent as="div" justify="end">
@@ -42,7 +42,7 @@ export default function ProfileDropdown() {
           <DropdownItem
             key="settings"
             onClick={() => {
-              navigate('/profile/c73f24d7-ef04-4366-8f5e-7ebc5c7797a2')
+              navigate('/profile/dcbd23e4-7773-41b1-b777-87a55a1443d1')
             }}
             startContent={<BiSolidUserCircle />}
           >
