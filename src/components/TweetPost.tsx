@@ -19,7 +19,7 @@ import LikesModal from './LikesModal'
 
 interface Props {
   tweet: Tweet
-  user: User
+  user: User 
 }
 
 export default function TweetPost({ tweet, user }: Props) {
@@ -31,13 +31,13 @@ export default function TweetPost({ tweet, user }: Props) {
       <Card>
         <CardHeader className="flex gap-3">
           <Avatar
-            src={user.image}
+            src={user?.image}
             radius="sm"
             alt="user photo"
             className="ms-2"
           />
           <div className="flex flex-col">
-            <p className="text-md font-extrabold">{user.name}</p>
+            <p className="text-md font-extrabold">{user?.name}</p>
             <p className="text-small text-default-500">
               {moment(createdAt).format('LLL')}
             </p>
@@ -65,8 +65,8 @@ export default function TweetPost({ tweet, user }: Props) {
           </div>
         </CardBody>
         <CardFooter className="flex flex-col items-start gap-2">
-          <TweetActions tweetId={tweet.id} userId={user.id} likes={tweet.likes} />
-          <TweetReply user={user} tweetId={tweet.id} />
+          <TweetActions tweetId={tweet.id} userId={user?.id} likes={tweet.likes} />
+          <TweetReply tweetId={tweet.id} user={user}/>
           {comments?.map(comment => (
             <TweetComment key={comment.id} comment={comment} />
           ))}

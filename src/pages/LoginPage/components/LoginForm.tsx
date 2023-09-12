@@ -5,10 +5,13 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { useMutation } from 'react-query'
 import APIClient from '../../../services/apiClient'
 import { useNavigate } from 'react-router-dom'
+import useAuthStore from '../../../store'
 
 export default function LoginForm() {
+    const {setToken} = useAuthStore()
+
   const navigate = useNavigate()
-  const client = new APIClient('/auth/login')
+  const client = new APIClient<{token: string}>('/auth/login')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -19,8 +22,9 @@ export default function LoginForm() {
 
   const { mutate, isLoading} = useMutation({
     mutationFn: client.post,
-    onSuccess: () => {
-      navigate('/')
+    onSuccess: (data) => {
+        setToken(data.token)
+        navigate('/')
     },
     onError: () => {
       toast.error('Login failed')

@@ -4,12 +4,16 @@ import TweetPost from '../../components/TweetPost'
 import WhoFollow from '../../components/WhoFollow'
 import useTweets from '../../hooks/useTweets'
 import useUser from '../../hooks/useUser'
+import useAuthStore from '../../store'
+import { decodeToken } from '../../utils/jwt'
 import TweetContainer from './components/TweetContainer'
 import TweetSkeleton from './components/TweetSkeleton'
 
 export default function HomePage() {
+  const { token } = useAuthStore()
+  const decoded = decodeToken(token)
   const { data: tweets, isLoading, isSuccess, isError } = useTweets()
-  const { data: user } = useUser('dcbd23e4-7773-41b1-b777-87a55a1443d1')
+  const { data: user, isSuccess: userSuccess, isError: userError } = useUser(decoded?.id ?? "")
 
   const skeletons = [1, 2, 3, 4, 5, 6]
 
@@ -18,12 +22,12 @@ export default function HomePage() {
       <TweetContainer>
         {isLoading &&
           skeletons.map(skeleton => <TweetSkeleton key={skeleton} />)}
-        {isError && <p className='text-md'>An error ocurred fetching tweets...</p>}
-        {isSuccess && (
+        {(isError || userError) && <p className='text-md'>An error ocurred fetching tweets...</p>}
+        {isSuccess && userSuccess && (
           <>
             <TweetInput user={user} />
             {tweets?.map(tweet => (
-              <TweetPost key={tweet.id} tweet={tweet} user={tweet.user} />
+              <TweetPost key={tweet.id} tweet={tweet} user={user} />
             ))}
           </>
         )}

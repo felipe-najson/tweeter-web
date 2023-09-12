@@ -8,7 +8,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-row gap-3 flex-auto ">
       <div className="hidden sm:flex  min-h-screen items-center p-8 w-1/2">
-        <img src={TweeterLogo} alt="logo" className="w-full max-w-md" />
+        <img src={TweeterLogo} alt="logo" className="w-full max-w-md drop-shadow-2xl :hover" />
       </div>
       <div className="w-full sm:w-2/3  flex flex-col justify-evenly p-8 sm:py-16 gap-8 ">
         <h1 className="text-5xl sm:text-6xl tracking-wide max-w-sm">

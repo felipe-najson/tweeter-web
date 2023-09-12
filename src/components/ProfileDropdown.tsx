@@ -10,10 +10,14 @@ import { useNavigate } from 'react-router-dom'
 import { BiLogOut, BiSolidUserCircle } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
 import useUser from '../hooks/useUser'
+import useAuthStore from '../store'
+import { decodeToken } from '../utils/jwt'
 
 export default function ProfileDropdown() {
   const navigate = useNavigate()
-  const {data: user} = useUser('dcbd23e4-7773-41b1-b777-87a55a1443d1')
+  const { token, removeToken } = useAuthStore()
+  const decoded = decodeToken(token)
+  const { data: user } = useUser(decoded?.id ?? "")
 
   return (
     <NavbarContent as="div" justify="end">
@@ -41,7 +45,7 @@ export default function ProfileDropdown() {
           <DropdownItem
             key="settings"
             onClick={() => {
-              navigate('/profile/dcbd23e4-7773-41b1-b777-87a55a1443d1')
+              navigate(`/profile/${decoded?.id}`)
             }}
             startContent={<BiSolidUserCircle />}
           >
@@ -50,7 +54,10 @@ export default function ProfileDropdown() {
           <DropdownItem key="help_and_feedback" startContent={<IoMdSettings />}>
             Settings
           </DropdownItem>
-          <DropdownItem startContent={<BiLogOut />} key="logout" color="danger" onClick={() => {navigate('/login')}}>
+          <DropdownItem onClick={() => {
+              removeToken()
+              navigate('/login')
+            }} startContent={<BiLogOut />} key="logout" color="danger" >
             Log Out
           </DropdownItem>
         </DropdownMenu>
