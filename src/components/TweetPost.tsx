@@ -16,6 +16,7 @@ import moment from 'moment'
 import type Tweet from '../entities/Tweet'
 import type User from '../entities/User'
 import LikesModal from './LikesModal'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   tweet: Tweet
@@ -25,12 +26,15 @@ interface Props {
 export default function TweetPost({ tweet, user }: Props) {
   const { createdAt, content, comments, likes } = tweet
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const navigate = useNavigate()
 
   return (
     <>
       <Card>
         <CardHeader className="flex gap-3">
           <Avatar
+            as='button'
+            onClick={() => { navigate(`/profile/${user?.id}`); }}
             src={user?.image}
             radius="sm"
             alt="user photo"

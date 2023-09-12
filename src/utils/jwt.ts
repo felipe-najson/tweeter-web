@@ -6,7 +6,6 @@ export const decodeToken = (token: string): Token | null => {
     const decoded = jwt<Token>(token)
     return decoded
   } catch (error) {
-    // Handle error (e.g., invalid token format)
     console.error('Error decoding token:', error)
     return null
   }
