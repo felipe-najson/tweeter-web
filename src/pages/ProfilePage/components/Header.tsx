@@ -13,10 +13,7 @@ export default function Header({ user }: { user: User }) {
   const { isOpen: isOpenFollowing, onOpen: openFollowing, onClose: onCloseFollowing} = useDisclosure()
   const { isOpen: isOpenFollowers, onOpen: openFollowers, onClose: onCloseFollowers } = useDisclosure()
 
-  const { mutation, isFollowed } = useFollow({
-    loggedId: loggedUser?.id,
-    profileUser: user,
-  })
+  const { mutation, isFollowed } = useFollow({ loggedId: loggedUser?.id, profileUser: user})
 
   const handleFollow = () => {
     mutation.mutate({ userFollowingId: user?.id, isFollowed })

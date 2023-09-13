@@ -63,13 +63,13 @@ export default function TweetPost({ tweet, user }: Props) {
               <p className="text-small text-gray-400">
                 {tweet?.comments?.length ?? '0'} Comments
               </p>
-              <p className="text-small text-gray-400">59k Retweets</p>
-              <p className="text-small text-gray-400">234 Saved</p>
+              <p className="text-small text-gray-400">{tweet?.retweets?.length ?? '0'} Retweets</p>
+              <p className="text-small text-gray-400">{tweet?.bookmarks?.length ?? '0'} Saved</p>
             </div>
           </div>
         </CardBody>
         <CardFooter className="flex flex-col items-start gap-2">
-          <TweetActions tweetId={tweet.id} userId={user?.id} likes={tweet.likes} />
+          <TweetActions tweet={tweet} userId={user?.id} />
           <TweetReply tweetId={tweet.id} user={user}/>
           {comments?.map(comment => (
             <TweetComment key={comment.id} comment={comment} />

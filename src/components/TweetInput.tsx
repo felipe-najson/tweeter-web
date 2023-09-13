@@ -21,10 +21,9 @@ export default function TweetInput({user}: {user: User | undefined}) {
   const [tweet, setTweet] = useState('')
   const {mutate, isLoading} = usePostTweet()
 
-
   const handleSubmit = () => {
     if (tweet !== '' )
-      mutate({content: tweet, userId: user?.id})
+      mutate({content: tweet})
   }
 
   return (

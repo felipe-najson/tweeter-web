@@ -8,7 +8,7 @@ interface Props {
 }
 
 const useFollow = ({ loggedId, profileUser }: Props) => {
-  const client = new APIClient(`/users/${loggedId}/follow`)
+  const client = new APIClient(`/users/follow`)
   const queryClient = useQueryClient()
 
   const isFollowed =

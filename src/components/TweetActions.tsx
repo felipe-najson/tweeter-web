@@ -2,35 +2,45 @@ import { Button, ButtonGroup } from '@nextui-org/react'
 import { FiBookmark, FiHeart } from 'react-icons/fi'
 import { TfiReload } from 'react-icons/tfi'
 
-import type User from '../entities/User'
-import useLikes from '../hooks/useLikes'
+import type Tweet from '../entities/Tweet'
+import useLike from '../hooks/useLike'
+import useRetweet from '../hooks/useRetweet'
+import useBookmark from '../hooks/useBookmark'
 
 interface Props {
-  tweetId: string
+  tweet: Tweet
   userId: string
-  likes: User[]
 }
 
-export default function TweetActions({tweetId, userId, likes}: Props) {
-  const {mutation, isLiked} = useLikes({userId, likes})
+export default function TweetActions({tweet, userId}: Props) {
+  const {likeMutation, isLiked } = useLike({userId, tweet})
+  const {retweetMutation, isRetweeted}  = useRetweet({tweet, userId})
+  const {bookmarkMutation, isBookmarked}  = useBookmark({tweet, userId})
 
-  const handleLike = () => {
-    mutation.mutate({tweetId, userId, isLiked})
+  const handleAction = (action: string) => {
+    if (action === 'retweet') {
+      retweetMutation.mutate({tweetId: tweet.id, isRetweeted})
+    } else if (action === 'like') {
+      likeMutation.mutate({tweetId: tweet.id, isLiked})
+    } else if (action === 'bookmark') {
+      bookmarkMutation.mutate({tweetId: tweet.id, isBookmarked})
+    }
   }
 
   return (
     <ButtonGroup className="flex w-full">
       <Button
         fullWidth
-        color="default"
+        color={isRetweeted ? "success" : "default"}
         variant="light"
+        onClick={() => { handleAction('retweet'); }}
         startContent={<TfiReload />}
       >
-        Retweeted
+        {isRetweeted ? 'Retweeted' : 'Retweet'}
       </Button>
       <Button
         fullWidth
-        onClick={handleLike}
+        onClick={() => { handleAction('like'); }}
         color={isLiked ? "danger" : "default"}
         variant="light"
         startContent={<FiHeart />}
@@ -39,11 +49,12 @@ export default function TweetActions({tweetId, userId, likes}: Props) {
       </Button>
       <Button
         fullWidth
-        color="default"
+        color={isBookmarked ? "primary" : "default"}
         variant="light"
+        onClick={() => { handleAction('bookmark'); }}
         startContent={<FiBookmark />}
       >
-        Saved
+        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
       </Button>
     </ButtonGroup>
   )

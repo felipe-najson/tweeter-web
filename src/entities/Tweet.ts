@@ -7,6 +7,8 @@ export default interface Tweet {
   userId: string
   user: User
   likes: User[]
+  bookmarks: User[]
+  retweets: User[]
   comments: Comment[]
 }
 

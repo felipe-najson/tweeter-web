@@ -1,19 +1,21 @@
 import { useMutation, useQueryClient } from 'react-query'
 import APIClient from '../services/apiClient'
-import type User from '../entities/User'
+import type Tweet from '../entities/Tweet'
 
 interface Props {
   userId: string
-  likes: User[]
+  tweet: Tweet
 }
 
-const useLikes = ({ userId, likes }: Props) => {
-  const client = new APIClient('/tweets/like')
+const useLike = ({ userId, tweet }: Props) => {
+  const { likes } = tweet
+
+  const client = new APIClient(`/tweets/like`)
   const queryClient = useQueryClient()
 
   const isLiked = likes?.findIndex(like => like.id === userId) !== -1
 
-  const mutation = useMutation({
+  const likeMutation = useMutation({
     mutationFn: client.put,
     onError: err => {
       console.log(err)
@@ -23,7 +25,7 @@ const useLikes = ({ userId, likes }: Props) => {
     },
   })
 
-  return { mutation, isLiked }
+  return { likeMutation, isLiked }
 }
 
-export default useLikes
+export default useLike

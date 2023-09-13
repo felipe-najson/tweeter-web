@@ -1,8 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query'
 import APIClient from '../services/apiClient'
-import type Tweet from '../entities/Tweet'
 
-const client = new APIClient<Tweet>('/tweets')
+const client = new APIClient('/tweets')
 
 const usePostTweet = () => {
   const queryClient = useQueryClient()
