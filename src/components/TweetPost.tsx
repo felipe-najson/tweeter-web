@@ -30,18 +30,18 @@ export default function TweetPost({ tweet, user }: Props) {
 
   return (
     <>
-      <Card>
+      <Card className='max-w-3xl w-full'>
         <CardHeader className="flex gap-3">
           <Avatar
             as='button'
-            onClick={() => { navigate(`/profile/${user?.id}`); }}
-            src={user?.image}
+            onClick={() => { navigate(`/profile/${tweet.user?.id}`); }}
+            src={tweet.user?.image}
             radius="sm"
             alt="user photo"
             className="ms-2"
           />
           <div className="flex flex-col">
-            <p className="text-md font-extrabold">{user?.name}</p>
+            <p className="text-md font-extrabold">{tweet.user?.name}</p>
             <p className="text-small text-default-500">
               {moment(createdAt).format('LLL')}
             </p>

@@ -2,7 +2,7 @@ import { Card, Skeleton } from '@nextui-org/react'
 
 export default function TweetSkeleton() {
   return (
-    <Card className="flex flex-row p-5 py-12 items-center gap-3">
+    <Card className="max-w-3xl w-full flex flex-row p-5 py-12 items-center gap-3">
       <div>
         <Skeleton className="rounded-full w-12 h-12" />
       </div>

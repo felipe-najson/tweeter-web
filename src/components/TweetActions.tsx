@@ -54,7 +54,7 @@ export default function TweetActions({tweet, userId}: Props) {
         onClick={() => { handleAction('bookmark'); }}
         startContent={<FiBookmark />}
       >
-        {isBookmarked ? 'Bookmarked' : 'Bookmark'}
+        {isBookmarked ? 'Saved' : 'Save'}
       </Button>
     </ButtonGroup>
   )

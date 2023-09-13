@@ -27,7 +27,7 @@ export default function TweetInput({user}: {user: User | undefined}) {
   }
 
   return (
-    <div className="flex flex-col gap-2 bg-white p-3 rounded-lg drop-shadow-md items-start">
+    <div className="flex flex-col max-w-3xl w-full gap-2 bg-white p-3 rounded-lg drop-shadow-md items-start">
       <span className="text-sm">Tweet something</span>
       <Divider className="bg-black/5" />
       <div className="flex gap-2 items-start w-full">
