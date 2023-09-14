@@ -2,6 +2,12 @@ import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
 import useAuthStore from '../store'
 
+export interface FetchResponse<T> {
+  count: number
+  next: string | null
+  results: T[]
+}
+
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 })
@@ -22,6 +28,12 @@ class APIClient<T> {
 
   constructor(endpoint: string) {
     this.endpoint = endpoint
+  }
+
+  getPaginated = (config: AxiosRequestConfig) => {
+    return axiosInstance
+      .get<FetchResponse<T>>(this.endpoint, config)
+      .then(res => res.data)
   }
 
   getAll = (config: AxiosRequestConfig) => {

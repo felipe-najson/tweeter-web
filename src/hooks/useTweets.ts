@@ -1,43 +1,42 @@
-import { useQuery } from 'react-query'
-import APIClient from '../services/apiClient'
+import { useInfiniteQuery } from 'react-query'
+import APIClient, { type FetchResponse } from '../services/apiClient'
 import type Tweet from '../entities/Tweet'
 import type TweetQuery from '../entities/TweetQuery'
 
-const useTweets = (tweetQuery: TweetQuery = {}) => {
-  const client = new APIClient<Tweet>('/tweets')
+const client = new APIClient<Tweet>('/tweets')
 
-  return useQuery({
+const useTweets = (tweetQuery: TweetQuery = {}) => {
+  return useInfiniteQuery<FetchResponse<Tweet>, Error>({
     queryKey: ['tweets', tweetQuery],
-    queryFn: () =>
-      client.getAll({
+    queryFn: ({ pageParam = 1 }) =>
+      client.getPaginated({
         params: {
           bookmarked: tweetQuery.bookmarked,
           following: tweetQuery.following,
+          page: pageParam,
         },
       }),
+    getNextPageParam: (lastPage, _pages) => {
+      return lastPage.next ?? undefined
+    },
   })
 }
 
 export default useTweets
 
-// const useGames = () => {
-//   const gameQuery = useGameQueryStore((s) => s.gameQuery);
+// const useTweets = (tweetQuery: TweetQuery = {}) => {
+//   const client = new APIClient<Tweet>('/tweets')
 
-//   return useInfiniteQuery<FetchResponse<Game>, Error>({
-//     queryKey: ['games', gameQuery],
-//     queryFn: ({ pageParam = 1 }) =>
-//       apiClient.getAll({
+//   return useQuery({
+//     queryKey: ['tweets', tweetQuery],
+//     queryFn: () =>
+//       client.getAll({
 //         params: {
-//           genres: gameQuery.genreId,
-//           parent_platforms: gameQuery.platformId,
-//           ordering: gameQuery.sortOrder,
-//           search: gameQuery.searchText,
-//           page: pageParam,
+//           bookmarked: tweetQuery.bookmarked,
+//           following: tweetQuery.following,
 //         },
 //       }),
-//     getNextPageParam: (lastPage, allPages) => {
-//       return lastPage.next ? allPages.length + 1 : undefined;
-//     },
-//     staleTime: ms('24h'),
-//   });
-// };
+//   })
+// }
+
+// export default useTweets
