@@ -22,12 +22,11 @@ interface Props {
   tweet: Tweet
 }
 
-export default function TweetPost({ tweet}: Props) {
+export default function TweetPost({tweet}: Props) {
   const { createdAt, content, comments, likes } = tweet
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate()
   const { data: user } = useAuthenticatedUser()
-
 
   return (
     <>

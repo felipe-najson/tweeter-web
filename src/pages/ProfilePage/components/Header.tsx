@@ -6,14 +6,14 @@ import { decodeToken } from '../../../utils/jwt'
 import useFollow from '../../../hooks/useFollow'
 import FollowModal from './FollowModal'
 
-export default function Header({ user }: { user: User }) {
+export default function Header({ user }: { user: User | undefined }) {
   const { token } = useAuthStore()
   const loggedUser = decodeToken(token)
 
   const { isOpen: isOpenFollowing, onOpen: openFollowing, onClose: onCloseFollowing} = useDisclosure()
   const { isOpen: isOpenFollowers, onOpen: openFollowers, onClose: onCloseFollowers } = useDisclosure()
 
-  const { mutation, isFollowed } = useFollow({ loggedId: loggedUser?.id, profileUser: user})
+  const { mutation, isFollowed } = useFollow({user})
 
   const handleFollow = () => {
     mutation.mutate({ userFollowingId: user?.id, isFollowed })
@@ -24,7 +24,7 @@ export default function Header({ user }: { user: User }) {
     <div className="flex items-end justify-center relative h-[630px] md:h-[400px] w-full mb-4">
       <img
         className="w-full pb-20 h-[400px] object-cover rounded absolute top-0 left-0 right-0 z-1"
-        src="https://images.unsplash.com/photo-1682686578842-00ba49b0a71a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2875&q=80"
+        src={user?.background}
         />
       <div className="relative flex flex-col items-center md:flex-row md:items-start gap bg-white shadow-md rounded-md p-6 w-full m-4 mx-4 md:mx-6 ">
         <Avatar

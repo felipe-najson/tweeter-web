@@ -7,7 +7,7 @@ import { TfiReload } from 'react-icons/tfi'
 import useUser from '../../hooks/useUser'
 import TweetPost from '../../components/TweetPost'
 import { useParams } from 'react-router-dom'
-import Header from './components/header'
+import Header from './components/Header'
 
 export default function ProfilePage() {
   const {id} = useParams()
@@ -47,8 +47,16 @@ export default function ProfilePage() {
           </Listbox>
         </div>
         <div className="flex flex-col gap-6 w-full">
+          {user?.tweets.length === 0 && (
+            <div className="flex flex-col items-center justify-center w-full h-full">
+              <h1 className="text-2xl font-bold">No tweets yet</h1>
+              <p className="text-md text-center font-light text-zinc-600 max-w-md">
+                When {user?.name} tweets, they'll show up here.
+              </p>
+            </div>
+          )}
           {user?.tweets.map((tweet) => (
-            <TweetPost key={tweet.id} tweet={tweet} user={user} />))
+            <TweetPost key={tweet.id} tweet={tweet} />))
             }
         </div>
       </div>

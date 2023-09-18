@@ -26,6 +26,7 @@ export default function TweetInput() {
   const handleSubmit = () => {
     if (tweet !== '' )
       mutate({content: tweet})
+      setTweet('')
   }
 
   return (

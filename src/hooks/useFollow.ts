@@ -1,18 +1,22 @@
 import { useMutation, useQueryClient } from 'react-query'
 import APIClient from '../services/apiClient'
 import type User from '../entities/User'
+import { decodeToken } from '../utils/jwt'
+import useAuthStore from '../store'
 
 interface Props {
-  loggedId: string
-  profileUser: User
+  user: User
 }
 
-const useFollow = ({ loggedId, profileUser }: Props) => {
-  const client = new APIClient(`/users/follow`)
+const client = new APIClient('/users/follow')
+
+const useFollow = ({ user }: Props) => {
+  const { token } = useAuthStore()
+  const loggedUser = decodeToken(token)
   const queryClient = useQueryClient()
 
   const isFollowed =
-    profileUser?.followedBy?.findIndex(user => user.id === loggedId) !== -1
+    user?.followedBy?.findIndex(user => user.id === loggedUser?.id) !== -1
 
   const mutation = useMutation({
     mutationFn: client.put,
@@ -20,7 +24,8 @@ const useFollow = ({ loggedId, profileUser }: Props) => {
       console.log(err)
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(['users', profileUser.id])
+      await queryClient.invalidateQueries(['users', user.id])
+      await queryClient.invalidateQueries(['users'])
     },
   })
 

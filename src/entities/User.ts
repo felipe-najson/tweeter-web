@@ -8,6 +8,7 @@ export default interface User {
   birthDate: string
   description: string
   image: string
+  background: string
   createdAt: string
   tweets: Tweet[]
   followedBy: User[]
