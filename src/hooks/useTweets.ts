@@ -14,6 +14,7 @@ const useTweets = (tweetQuery: TweetQuery = {}) => {
           bookmarked: tweetQuery.bookmarked,
           following: tweetQuery.following,
           page: pageParam,
+          search: tweetQuery.search,
         },
       }),
     getNextPageParam: (lastPage, _pages) => {

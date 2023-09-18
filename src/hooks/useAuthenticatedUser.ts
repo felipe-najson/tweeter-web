@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import APIClient from '../services/apiClient'
 import type User from '../entities/User'
 
-const client = new APIClient<User>('/auth/user')
+const client = new APIClient<User>('/auth')
 
 const useAuthenticatedUser = () => {
   return useQuery({
