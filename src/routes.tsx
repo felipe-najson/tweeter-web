@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound'
 import AuthLayout from './authLayout'
 import LoginPage from './pages/LoginPage'
 import BookmarkPage from './pages/BookmarkPage'
+import ExplorePage from './pages/ExplorePage'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'profile/:id', element: <ProfilePage /> },
       { path: 'bookmark', element: <BookmarkPage /> },
+      { path: 'explore', element: <ExplorePage /> },
       { path: '*', element: <NotFound />}
     ],
   },

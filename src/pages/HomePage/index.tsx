@@ -5,18 +5,12 @@ import TweetInput from '../../components/TweetInput'
 import TweetPost from '../../components/TweetPost'
 import WhoFollow from '../../components/WhoFollow'
 import useTweets from '../../hooks/useTweets'
-import useUser from '../../hooks/useUser'
-import useAuthStore from '../../store'
-import { decodeToken } from '../../utils/jwt'
 import TweetContainer from './components/TweetContainer'
 import TweetSkeleton from './components/TweetSkeleton'
 
 export default function HomePage() {
-  const { token } = useAuthStore()
-  const decoded = decodeToken(token)
   const query = {following: true}
   const { data: tweetPages, isLoading, isSuccess, isError, hasNextPage, fetchNextPage } = useTweets(query)
-  const { data: user, isSuccess: userSuccess, isError: userError } = useUser(decoded?.id ?? "")
 
   const skeletons = [1, 2, 3, 4, 5, 6]
   const tweets = tweetPages?.pages.flatMap(page => page.results) ?? []
@@ -34,12 +28,12 @@ export default function HomePage() {
       <TweetContainer>
         {isLoading &&
           skeletons.map(skeleton => <TweetSkeleton key={skeleton} />)}
-        {(isError || userError) && <p className='text-md'>An error ocurred fetching tweets...</p>}
-        {isSuccess && userSuccess && (
+        {(isError ) && <p className='text-md'>An error ocurred fetching tweets...</p>}
+        {isSuccess && (
           <>
-            <TweetInput user={user} />
+            <TweetInput />
             {tweets.map(tweet => (
-              <TweetPost key={tweet.id} tweet={tweet} user={user} />
+              <TweetPost key={tweet.id} tweet={tweet}/>
             ))}
           </>
         )}

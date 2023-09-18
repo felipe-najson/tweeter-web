@@ -14,19 +14,20 @@ import TweetReply from './TweetReply'
 
 import moment from 'moment'
 import type Tweet from '../entities/Tweet'
-import type User from '../entities/User'
 import LikesModal from './LikesModal'
 import { useNavigate } from 'react-router-dom'
+import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
 interface Props {
   tweet: Tweet
-  user: User 
 }
 
-export default function TweetPost({ tweet, user }: Props) {
+export default function TweetPost({ tweet}: Props) {
   const { createdAt, content, comments, likes } = tweet
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate()
+  const { data: user } = useAuthenticatedUser()
+
 
   return (
     <>
@@ -60,16 +61,13 @@ export default function TweetPost({ tweet, user }: Props) {
                   {tweet?.likes?.length ?? '0'} Likes
                 </Link>
               )}
-              <p className="text-small text-gray-400">
-                {tweet?.comments?.length ?? '0'} Comments
-              </p>
               <p className="text-small text-gray-400">{tweet?.retweets?.length ?? '0'} Retweets</p>
               <p className="text-small text-gray-400">{tweet?.bookmarks?.length ?? '0'} Saved</p>
             </div>
           </div>
         </CardBody>
         <CardFooter className="flex flex-col items-start gap-2">
-          <TweetActions tweet={tweet} userId={user?.id} />
+          <TweetActions tweet={tweet} userId={user?.id ?? ''} />
           <TweetReply tweetId={tweet.id} user={user}/>
           {comments?.map(comment => (
             <TweetComment key={comment.id} comment={comment} />

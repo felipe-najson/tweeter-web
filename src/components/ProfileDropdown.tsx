@@ -9,15 +9,13 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { BiLogOut, BiSolidUserCircle } from 'react-icons/bi'
 import { IoMdSettings } from 'react-icons/io'
-import useUser from '../hooks/useUser'
+import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 import useAuthStore from '../store'
-import { decodeToken } from '../utils/jwt'
 
 export default function ProfileDropdown() {
   const navigate = useNavigate()
-  const { token, removeToken } = useAuthStore()
-  const decoded = decodeToken(token)
-  const { data: user } = useUser(decoded?.id ?? "")
+  const { data: user } = useAuthenticatedUser()
+  const {removeToken} = useAuthStore()
 
   return (
     <NavbarContent as="div" justify="end">
@@ -45,7 +43,7 @@ export default function ProfileDropdown() {
           <DropdownItem
             key="settings"
             onClick={() => {
-              navigate(`/profile/${decoded?.id}`)
+              navigate(`/profile/${user?.id}`)
             }}
             startContent={<BiSolidUserCircle />}
           >

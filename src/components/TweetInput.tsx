@@ -12,14 +12,16 @@ import {
 } from '@nextui-org/react'
 import { BiWorld, BiImageAlt } from 'react-icons/bi'
 import { BsFillPeopleFill } from 'react-icons/bs'
-import type User from '../entities/User'
 import { useState } from 'react'
 import usePostTweet from '../hooks/usePostTweet'
+import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
 
-export default function TweetInput({user}: {user: User | undefined}) {
+export default function TweetInput() {
   const [tweet, setTweet] = useState('')
   const {mutate, isLoading} = usePostTweet()
+  const { data: user } = useAuthenticatedUser()
+
 
   const handleSubmit = () => {
     if (tweet !== '' )

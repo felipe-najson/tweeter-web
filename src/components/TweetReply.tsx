@@ -9,7 +9,7 @@ import {BsFillSendFill} from 'react-icons/bs'
 
 const client = new APIClient('/comments')
 
-export default function TweetReply({user, tweetId}: {user: User, tweetId: string}) {
+export default function TweetReply({user, tweetId}: {user: User | undefined, tweetId: string}) {
   const [content, setContent] = useState('')
   const queryClient = useQueryClient()
 
