@@ -22,7 +22,7 @@ const usePostTweet = () => {
 
     //   return { previousTweets } // --> Context
     // },
-    onError: (err, newTweet, context) => {
+    onError: (err, _newTweet, _context) => {
       console.log(err)
 
       //   if (context?.previousTweets != null) {
