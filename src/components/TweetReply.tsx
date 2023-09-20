@@ -49,7 +49,7 @@ export default function TweetReply({user, tweetId}: {user: User | undefined, twe
           }
         />
         <Button isLoading={isLoading} isIconOnly onClick={handleSubmit} color='primary'>
-          <BsFillSendFill />
+          {isLoading ? null :  <BsFillSendFill />}
         </Button>
       </div>
       <Divider />

@@ -16,7 +16,7 @@ const useFollow = ({ user }: Props) => {
   const queryClient = useQueryClient()
 
   const isFollowed =
-    user?.followedBy?.findIndex(user => user.id === loggedUser?.id) !== -1
+    user?.followedBy?.findIndex(user => user.id === loggedUser?.id) > -1
 
   const mutation = useMutation({
     mutationFn: client.put,

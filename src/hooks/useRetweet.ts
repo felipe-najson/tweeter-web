@@ -13,7 +13,7 @@ const useRetweet = ({ userId, tweet }: Props) => {
   const client = new APIClient(`/tweets/retweet`)
   const queryClient = useQueryClient()
 
-  const isRetweeted = retweets?.findIndex(like => like.id === userId) !== -1
+  const isRetweeted = retweets?.findIndex(like => like.id === userId) > -1
 
   const retweetMutation = useMutation({
     mutationFn: client.put,

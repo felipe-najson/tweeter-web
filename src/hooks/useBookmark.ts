@@ -13,7 +13,7 @@ const useBookmark = ({ userId, tweet }: Props) => {
   const client = new APIClient(`/tweets/bookmark`)
   const queryClient = useQueryClient()
 
-  const isBookmarked = bookmarks?.findIndex(like => like.id === userId) !== -1
+  const isBookmarked = bookmarks?.findIndex(like => like.id === userId) > -1
 
   const bookmarkMutation = useMutation({
     mutationFn: client.put,

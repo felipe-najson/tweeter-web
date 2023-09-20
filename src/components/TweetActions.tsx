@@ -17,6 +17,8 @@ export default function TweetActions({tweet, userId}: Props) {
   const {retweetMutation, isRetweeted}  = useRetweet({tweet, userId})
   const {bookmarkMutation, isBookmarked}  = useBookmark({tweet, userId})
 
+  console.log('userId', userId)
+
   const handleAction = (action: string) => {
     if (action === 'retweet') {
       retweetMutation.mutate({tweetId: tweet.id, isRetweeted})

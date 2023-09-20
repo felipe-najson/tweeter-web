@@ -19,7 +19,6 @@ export default function ProfilePage() {
     <div className='w-full'>
       <Header user={user}/>
       <div className="flex flex-row gap-8 sm:px-6 pb-6 justify-center">
-      
       <ActionMenu/>
         <div className="flex flex-col gap-6">
           {user?.tweets.length === 0 && (
