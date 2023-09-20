@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
+// Only for auth pages
 export default function AuthLayout() {
   return (
     <div className="bg-gray-200 min-h-screen">
