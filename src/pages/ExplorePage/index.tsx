@@ -37,6 +37,7 @@ export default function ExplorePage() {
         className="md:w-[680px] sm:w-[500px] py-4 sm:px-4 sm:py-0"
       >
         <TweetContainer>
+          <SearchInput handleSearch={handleSearch} search={search} setSearch={setSearch} />
           {isLoading &&
             skeletons.map(skeleton => <TweetSkeleton key={skeleton} />)}
           {(isError) && (
@@ -44,7 +45,6 @@ export default function ExplorePage() {
           )}
           {isSuccess && (
             <>
-              <SearchInput handleSearch={handleSearch} search={search} setSearch={setSearch} />
               {tweets.length === 0 && (
                 <div className="flex flex-col items-center justify-center w-full h-full">
                   <h1 className="text-2xl font-bold">No tweets yet</h1>

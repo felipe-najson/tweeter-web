@@ -17,8 +17,6 @@ export default function TweetActions({tweet, userId}: Props) {
   const {retweetMutation, isRetweeted}  = useRetweet({tweet, userId})
   const {bookmarkMutation, isBookmarked}  = useBookmark({tweet, userId})
 
-  console.log('userId', userId)
-
   const handleAction = (action: string) => {
     if (action === 'retweet') {
       retweetMutation.mutate({tweetId: tweet.id, isRetweeted})
@@ -35,26 +33,29 @@ export default function TweetActions({tweet, userId}: Props) {
         fullWidth
         color={isRetweeted ? "success" : "default"}
         variant="light"
+        isLoading={retweetMutation.isLoading}
         onClick={() => { handleAction('retweet'); }}
-        startContent={<TfiReload />}
+        startContent={retweetMutation.isLoading ? null : <TfiReload />}
       >
         {isRetweeted ? 'Retweeted' : 'Retweet'}
       </Button>
       <Button
         fullWidth
+        isLoading={likeMutation.isLoading}
         onClick={() => { handleAction('like'); }}
         color={isLiked ? "danger" : "default"}
         variant="light"
-        startContent={<FiHeart />}
+        startContent={likeMutation.isLoading ? null :  <FiHeart />}
       >
         {isLiked ? 'Liked' : 'Like'}
       </Button>
       <Button
         fullWidth
+        isLoading={bookmarkMutation.isLoading}
         color={isBookmarked ? "primary" : "default"}
         variant="light"
         onClick={() => { handleAction('bookmark'); }}
-        startContent={<FiBookmark />}
+        startContent={bookmarkMutation.isLoading ? null : <FiBookmark />}
       >
         {isBookmarked ? 'Saved' : 'Save'}
       </Button>

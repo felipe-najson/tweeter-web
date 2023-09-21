@@ -19,14 +19,14 @@ import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
 export default function TweetInput() {
   const [tweet, setTweet] = useState('')
-  const {mutate, isLoading} = usePostTweet()
+  const {mutate, isLoading} = usePostTweet({setTweet})
   const { data: user } = useAuthenticatedUser()
 
 
   const handleSubmit = () => {
-    if (tweet !== '' )
+    if (tweet !== '' ){
       mutate({content: tweet})
-      setTweet('')
+    }
   }
 
   return (

@@ -8,23 +8,23 @@ import { useNavigate } from 'react-router-dom'
 import useAuthStore from '../../../store'
 
 export default function LoginForm() {
-    const {setToken} = useAuthStore()
+  const { setToken } = useAuthStore()
 
   const navigate = useNavigate()
-  const client = new APIClient<{token: string}>('/auth/login')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const client = new APIClient<{ token: string }>('/auth/login')
+  const [username, setUsername] = useState('jhondoe12')
+  const [password, setPassword] = useState('password1234')
 
   const [isVisible, setIsVisible] = useState(false)
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
 
-  const { mutate, isLoading} = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: client.post,
-    onSuccess: (data) => {
-        setToken(data.token)
-        navigate('/')
+    onSuccess: data => {
+      setToken(data.token)
+      navigate('/')
     },
     onError: () => {
       toast.error('Login failed')
@@ -68,7 +68,7 @@ export default function LoginForm() {
           className="max-w-sm"
         />
         <Button
-            isLoading={isLoading}
+          isLoading={isLoading}
           color="primary"
           className="max-w-sm px-10"
           onClick={handleLogin}

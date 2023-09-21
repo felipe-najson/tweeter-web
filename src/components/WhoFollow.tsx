@@ -12,7 +12,7 @@ export default function WhoFollow() {
         <Divider />
       </CardHeader>
       <CardBody className="flex flex-col gap-7">
-        {users?.slice(0,4)?.map(user => (
+        {users?.map(user => (
           <FollowCard key={user.id} user={user} />
         ))}
       </CardBody>

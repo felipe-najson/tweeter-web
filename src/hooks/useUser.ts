@@ -6,7 +6,7 @@ const client = new APIClient<User>('/users')
 
 const useUser = (id: string) => {
   return useQuery({
-    queryKey: ['users', id],
+    queryKey: ['user'],
     queryFn: () => client.get(id),
   })
 }

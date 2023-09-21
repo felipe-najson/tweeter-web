@@ -3,7 +3,11 @@ import APIClient from '../services/apiClient'
 
 const client = new APIClient('/tweets')
 
-const usePostTweet = () => {
+interface Props {
+  setTweet: (tweet: string) => void
+}
+
+const usePostTweet = ({ setTweet }: Props) => {
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -35,6 +39,7 @@ const usePostTweet = () => {
     onSuccess: async () => {
       // 1. Invalidate the tweets query
       await queryClient.invalidateQueries(['tweets'])
+      setTweet('')
     },
   })
 }

@@ -22,6 +22,7 @@ const useRetweet = ({ userId, tweet }: Props) => {
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries(['tweets'])
+      await queryClient.invalidateQueries(['user'])
     },
   })
 

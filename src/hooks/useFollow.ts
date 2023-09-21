@@ -24,8 +24,8 @@ const useFollow = ({ user }: Props) => {
       console.log(err)
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries(['users', user.id])
       await queryClient.invalidateQueries(['users'])
+      await queryClient.invalidateQueries(['user'])
     },
   })
 
