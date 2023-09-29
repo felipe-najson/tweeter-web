@@ -17,7 +17,7 @@ import { useState } from 'react'
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 import { BiBookmarks, BiHomeAlt2, BiNews, BiUserCircle } from 'react-icons/bi'
 
-export default function NavBar() {
+export default function NavigationBar() {
   const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { data: user } = useAuthenticatedUser()
