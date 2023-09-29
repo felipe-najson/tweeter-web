@@ -1,4 +1,3 @@
-
 import useUser from '../../hooks/useUser'
 import TweetPost from '../../components/TweetPost'
 import { useParams } from 'react-router-dom'
@@ -7,20 +6,20 @@ import { Spinner } from '@nextui-org/react'
 import ActionMenu from './components/ActionMenu'
 
 export default function ProfilePage() {
-  const {id} = useParams()
+  const { id } = useParams()
   if (id === undefined) return null
   const { data: user, isLoading, isError } = useUser(id)
 
-  if (!user && isError) return <div>failed to load</div>;
+  if (!user && isError) return <div>failed to load</div>
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />
 
   return (
-    <div className='w-full'>
-      <Header user={user}/>
-      <div className="flex flex-row gap-8 sm:px-6 pb-6 justify-center">
-      <ActionMenu/>
-        <div className="flex flex-col gap-6">
+    <div className="w-full">
+      <Header user={user} />
+      <div className="flex flex-row gap-2 sm:px-6 pb-6 justify-center">
+        <ActionMenu />
+        <div className="flex flex-col gap-6 px-4">
           {user?.tweets.length === 0 && (
             <div className="flex flex-col items-center justify-center w-full h-full">
               <h1 className="text-2xl font-bold">No tweets yet</h1>
@@ -29,9 +28,9 @@ export default function ProfilePage() {
               </p>
             </div>
           )}
-          {user?.tweets.map((tweet) => (
-            <TweetPost key={tweet.id} tweet={tweet} />))
-            }
+          {user?.tweets.map(tweet => (
+            <TweetPost key={tweet.id} tweet={tweet} />
+          ))}
         </div>
       </div>
     </div>
