@@ -23,13 +23,15 @@ export default function HomePage() {
   const tweets = tweetPages?.pages.flatMap(page => page.results) ?? []
 
   return (
-    <div className="flex flex-row justify-center w-full gap-6 md:py-8 ">
+    <div className="flex flex-col sm:flex-row justify-center w-full py-4 md:py-8 ">
       <InfiniteScroll
         dataLength={tweets.length}
         hasMore={!!hasNextPage}
         next={() => fetchNextPage()}
-        loader={<Spinner />}
-        className="md:w-[680px] sm:w-[500px] py-4 sm:px-4 sm:py-0"
+        loader={
+          <Spinner className='m-2'/>
+        }
+        className="sm:w-[400px] md:w-[470px] lg:w-[600px] px-4 py-4 sm:py-0"
       >
         <TweetContainer>
           {isLoading &&
@@ -48,7 +50,7 @@ export default function HomePage() {
         </TweetContainer>
       </InfiniteScroll>
       <Skeleton isLoaded={!isLoading} className="rounded-lg h-full shadow-none">
-        <div className="hidden sm:flex w-60 md:w-80 h-screen flex-col gap-3">
+        <div className="hidden lg:px-4 md:flex w-72 lg:w-80 h-screen flex-col gap-3">
           <Trends />
           <WhoFollow />
         </div>
