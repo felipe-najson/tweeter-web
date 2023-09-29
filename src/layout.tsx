@@ -1,8 +1,8 @@
-import Header from './components/Header'
 import { Navigate, Outlet, useNavigate } from 'react-router-dom'
 import useAuthStore from './store'
 import { useEffect } from 'react'
 import { decodeToken } from './utils/jwt'
+import NavigationBar from './components/NavigationBar'
 
 export default function Layout() {
   const { token } = useAuthStore()
@@ -21,7 +21,7 @@ export default function Layout() {
 
   return (
     <div className="bg-gray-200 flex flex-col items-center min-h-screen overflow-x-hidden">
-      <Header />
+      <NavigationBar />
       <div className="max-w-[1200px]">
         {token ? <Outlet /> : <Navigate to="/login" />}
       </div>

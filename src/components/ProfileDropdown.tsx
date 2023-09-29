@@ -18,7 +18,7 @@ export default function ProfileDropdown() {
   const {removeToken} = useAuthStore()
 
   return (
-    <NavbarContent as="div" justify="end">
+    <NavbarContent as="div" justify="end" className='hidden sm:flex'>
       <Dropdown placement="bottom-end">
         <div className="flex gap-3 items-center">
           <DropdownTrigger>

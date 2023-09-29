@@ -21,9 +21,9 @@ export default function Header({ user }: { user: User | undefined }) {
 
   return (
     <>
-    <div className="flex items-end justify-center relative h-[630px] md:h-[400px] w-full mb-4">
+    <div className="flex items-end justify-center relative h-[540px] md:h-[400px]  w-full mb-4">
       <img
-        className="w-full pb-20 h-[400px] object-cover rounded absolute top-0 left-0 right-0 z-1"
+        className="w-full pb-20 h-[340px] object-cover rounded absolute top-0 left-0 right-0 z-1"
         src={user?.background}
         />
       <div className="relative flex flex-col items-center md:flex-row md:items-start gap bg-white shadow-md rounded-md p-6 w-full m-4 mx-4 md:mx-6 ">
