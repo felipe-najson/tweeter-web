@@ -20,9 +20,9 @@ export default function Layout() {
   }, [token])
 
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="bg-gray-200 flex flex-col items-center min-h-screen overflow-x-hidden">
       <Header />
-      <div className="flex flex-colmax-w-[1400px] items-center justify-center">
+      <div className="max-w-[1200px]">
         {token ? <Outlet /> : <Navigate to="/login" />}
       </div>
     </div>
